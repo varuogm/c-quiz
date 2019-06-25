@@ -1,0 +1,355 @@
+#include<stdio.h>
+#include<conio.h>
+#include<windows.h>
+#include<ctype.h>
+#include<stdlib.h>
+#include<time.h>
+#include<dos.h>
+
+void displayscore()
+ {
+ char name[20];
+ float s;
+ FILE *f;
+ system("cls");
+ f=fopen("score.txt","r");
+ fscanf(f,"%s%f",&name,&s);
+ printf("\n\n\t\t ");
+ printf("\n\n\t\t %s has secured the Highest Score %.2f",name,s);
+ printf("\n\n\t\t ");
+ fclose(f);
+ getch();
+ }
+
+
+
+void help()
+ {
+ system("cls");
+ printf("\n\n\n\ ye bohot aasan game he bhaiyo and behno");
+ printf("\n\n\t isme aapko char mese se ek sahi option chunna hai");
+ printf("\n\n\t jiske mutabik aapka score decide hoga");
+ printf("\n\n\t end yaad rakhiye jitna jaldi utter milega");
+ printf("\n\n\t uske hisab se hi score calculate hoga and display hoga");
+ printf("\n\n\t agar aapka pradarshan accha hoga to highscore me aapka naam aayega");
+ printf("\n\n\t chaliye shuru karte he game.");
+ }
+void writescore(float score, char plnm[20])
+ {
+ float sc;
+ char nm[20];
+ FILE *f;
+ system("cls");
+ f=fopen("score.txt","r");
+ fscanf(f,"%s%f",&nm,&sc);
+ if (score>=sc)
+   { sc=score;
+     fclose(f);
+     f=fopen("score.txt","w");
+     fprintf(f,"%s\n%.2f",plnm,sc);
+     fclose(f);
+   }
+ }
+int main()
+     {
+     int countq,countr;
+     int r,i;
+     int pa;int nq[6];int w;
+     float score;
+     char choice;
+     char playername[20];
+     time_t initialtime,finaltime;
+     system("cls");
+     //randomize();
+     mainhome:
+     system("cls");
+     puts("\n\t\t WELCOME TO POORNIMA TEST PROGRAM \n\n") ;
+     puts("\n\t\t-------------------------------\n");
+     puts("\n\t\t Enter  'S'    to start game       \n");
+     puts("\n\t\t Enter  'V'    to view high score  \n");
+     puts("\n\t\t Enter  'H'    for help -  RULES JARURI HAI         \n");
+     puts("\n\t\t Enter  'Q'    to quit             ");
+     printf("\n\t\t-------------------------------\n\n\t\t  ");
+     choice=toupper(getch());
+     if (choice=='V')
+ {
+ displayscore();
+ goto mainhome;
+ }
+     else if (choice=='Q')
+ exit(1);
+     else if (choice=='H')
+ {
+ help();
+ getch();
+ goto mainhome;
+ }
+    else if(choice=='S'){
+     system("cls");
+
+     printf("\n\n\n\t\t\tEnter your name...\n");
+     printf("\n\t\t\t( ek hi word hona chiye )\n\n\t\t\t");
+     gets(playername);
+
+     home:
+     system("cls");
+     initialtime=time(NULL);
+     countq=countr=0;
+     i=1;
+     start:
+     srand ( time(NULL) );
+     r=rand()%23+1;
+     nq[i]=r;
+     for (w=0;w<i;w++)
+ if (nq[w]==r) goto start;
+
+     switch(r)
+  {
+  case 1:
+  printf("\n\n aapko kaha admission kabhi nhi lena chiye?\n");
+  printf("\n\n A.poornima \t B.IIT \n\n C.NIT \t D.sarkari college\n\n");
+  countq++;
+  if (toupper(getch())=='A')
+   {printf("\n\nCorrect!!!   ise baat pe party do ");countr++; break;}
+  else
+         {printf(" \n\nWrong!!!  The correct answer is A.poornima ");break;}
+
+  case 2:
+  printf("\n\n\n In mese konsa accha he");
+ 
+  printf("\n\n A.PCE\tB.PIET\n\nC.dono bakwas he\tD.bhagwan jaane\n\n");
+  countq++;
+  if (toupper(getch())=='A')
+   {printf("\n\nCorrect!!!");countr++; break;}
+  else
+         printf("\n\nWrong!!! The correct answer is A.4");
+  break;
+
+  case 3:
+  printf("\n\n\n PCE ke canteen ki prasidhh khana kya he?");
+  printf("\n\nA.poha\tB.sab bakwas he\n\nC.pepsi\tD.dal pakwan\n\n");
+  countq++;
+  if (toupper(getch())=='D')
+   {printf("\n\nCorrect!!!");countr++; break;}
+  else
+         {printf("\n\nWrong!!! The correct answer is D.dal pakwan");break;}
+
+
+  case 4:
+  printf("\n\n\n poornima ka official masti group ka kya name he");
+  printf("\n\nA.muskeeters\tB.zircon\n\nC.PAA\tD.desi kalakar\n\n");
+  countq++;
+  if (toupper(getch())=='A')
+   {printf("\n\nCorrect!!!");countr++; break;}
+  else
+         {printf("\n\nWrong!!! The correct answer is A.muskeeters");break;}
+
+
+  case 5:
+  printf("\n\n\npoornim ke aaju baaju sabse bada tourist spot kya hai");
+  printf("\n\nA.THADI\tB.kootliya ka playground\n\nC.piet wala thela\tD.none\n\n");
+  countq++;
+  if (toupper(getch())=='A')
+   {printf("\n\nCorrect!!!");countr++; break;}
+  else
+         {printf("\n\nWrong!!! The correct answer is A.thadi");break;}
+
+  case 6:
+  printf("\n\n\nF section ke memer ka name bataiye");
+  printf("\n\nA.justin beebariyast\tB.hardik\n\nC.chandu\tD.none\n\n");
+  countq++;
+  if (toupper(getch())=='B' )
+   {printf("\n\nCorrect!!!");countr++; break;}
+  else
+         {printf("\n\nWrong!!! The correct answer is B.hardik");break;}
+
+
+  case 7:
+  printf("\n\n\n poornima ke baccho ko kaise nokri milti he?");
+  printf("\n\nA.CEO in top company\tB.air force me top post\n\nC.poornima ka chokidaar\tD.expert hacker\n\n");
+  countq++;
+  if (toupper(getch())=='C')
+   {printf("\n\nCorrect!!!");countr++; break;}
+  else
+         {printf("\n\nWrong!!! The correct answer is C.poornima ka chokidaar");break;}
+
+
+  case 8:
+  printf("\n\n\nWhat is the height of pce ?");
+  printf("\n\nA.8648 meter\tB.6648 meter \n\nC.8884 meter\tD.4-5 hito floor he usme bhi kya naapna\n\n");
+  countq++;
+  if (toupper(getch())=='D')
+   {printf("\n\nCorrect!!!");countr++; break;}
+  else
+         {printf("\n\nWrong!!! The correct answer is D.4-5 hito floor he usme bhi kya naapna");break;}
+
+
+  case 9:
+  printf("\n\n\nbest thetre jaha sabse jyada  maja hota he and bilkul net ki speed nhi aati");
+  printf("\n\nA.ARBUDA\tB.Helsinki\n\nC.Rome\t\tD.Madrid\n\n");
+  countq++;
+  if (toupper(getch())=='A')
+   {printf("\n\nCorrect!!!");countr++; break;}
+  else
+         {printf("\n\nWrong!!! The correct answer is A.ARBUDA");break;}
+
+
+  case 10:
+  printf("\n\n\n aapke hisab se poornima ka kya naam hona chiye");
+  printf("\n\nA.poorni-MAA\tB.purr-nima\n\nC.PORN-IMA\tD.pooraneema\n\n");
+  countq++;
+  if (toupper(getch())=='C')
+   {printf("\n\nCorrect!!!");countr++; break;}
+  else
+         {printf("\n\nWrong!!! The correct answer is C.PORN-IMA");break;}
+
+
+  case 11:
+  printf("\n\n\nWho was the only player to score 6 successive sixes in an over?");
+  printf("\n\nA.Adam Gilchrist\tB.M.S.Dhoni\n\nC.Herschel Gibbs\tD.Sanath Jayasurya\n\n");
+  countq++;
+  if (toupper(getch())=='C')
+   {printf("\n\nCorrect!!!");countr++; break;}
+  else
+         {printf("\n\nWrong!!! The correct answer is C.Herschel Gibbs");break;}
+
+  case 12:
+  printf("\n\n\nWho was the only player to take 4 successive wickets?");
+  printf("\n\nA.Malinga Bandara\tB.Lasith Malinga\n\nC.Bret Lee\tD.Murali Daran\n\n");
+  countq++;
+  if (toupper(getch())=='B')
+   {printf("\n\nCorrect!!!");countr++; break;}
+  else
+         {printf("\n\nWrong!!! The correct answer is B.Lasith Malinga");break;}
+
+  case 13:
+  printf("\n\n\nWhich country is hosting the Fifa World Cup 2010?");
+  printf("\n\nA.South Africa\tB.Italy\n\nC.Argentina\tD.Spain\n\n");
+  countq++;
+  if (toupper(getch())=='A')
+   {printf("\n\nCorrect!!!");countr++; break;}
+  else
+         {printf("\n\nWrong!!! The correct answer is A.South Africa");break;}
+
+  case 14:
+  printf("\n\n\nWho is the author of 'Pulpasa Cafe'?");
+  printf("\n\nA.Narayan Wagle\tB.Lal Gopal Subedi\n\nC.B.P. Koirala\tD.Khagendra Sangraula\n\n");
+  countq++;
+  if (toupper(getch())=='A')
+   {printf("\n\nCorrect!!!");countr++; break;}
+  else
+         {printf("\n\nWrong!!! The correct answer is A.Narayan Wagle");break;}
+
+  case 15:
+  printf("\n\n\nWhich country is Maria Sarapova from?");
+  printf("\n\nA.Russia\tB.Switzerland\n\nC.Argentina\tD.Spain\n\n");
+  countq++;
+  if (toupper(getch())=='A')
+   {printf("\n\nCorrect!!!");countr++; break;}
+  else
+         {printf("\n\nWrong!!! The correct answer is A.Russia");break;}
+
+  case 16:
+  printf("\n\n\n inme se kiss se kabhi panga ni lena chiye varna gye samjho ");
+  printf("\n\nA.tiger\tB.hardik\n\nC.dinosaur\lD.fevi quick\n\n");
+  countq++;
+  if (toupper(getch())=='B')
+   {printf("\n\nCorrect!!!");countr++; break;}
+  else
+         {printf("\n\nWrong!!! The correct answer is B.hardik please sir isme mera meme na banana");break;}
+
+
+  case 17:
+  printf("\n\n\nbest singer by far mile");
+  printf("\n\nA.lalu prasad yadav\tB.dennis richie\n\nC.AABHAR ji ki voice lovely\tD.Gulam ali\n\n");
+  countq++;
+  if (toupper(getch())=='C')
+   {printf("\n\nCorrect!!!");countr++; break;}
+  else
+         {printf("\n\nWrong!!! The correct answer is C.AABHAR ji ki voice lovely");break;}
+
+  case 18:
+  printf("\n\n\nkiski attendence 30-40 rehti he because vo ek bohot jaani maani company me kaam karta h so attendence ka time nhi milta");
+  printf("\n\nA.bill gates\tB.honey singh\n\nC.raani mukharji\tD.govind\n\n");
+  countq++;
+  if (toupper(getch())=='D')
+   {printf("\n\nCorrect!!!");countr++; break;}
+  else
+         {printf("\n\nWrong!!! The correct answer is D.govind");break;}
+
+  case 19:
+  printf("\n\n\nEsa  konsa baccha he daaadhi muche wala  pyara bacchabut ander se shaitaan");
+  printf("\n\nA.shayd C option\tB.c option ko hi lock kardo\n\nC.gourav hi hoga sala\tD.messi\n\n");
+  countq++;
+  if (toupper(getch())=='C')
+   {printf("\n\nCorrect!!!");countr++; break;}
+  else
+         {printf("\n\nWrong!!! The correct answer is C.gourav");break;}
+
+  case 20:
+  printf("\n\n\nWhich city is known at 'The City of poornimites'?");
+  printf("\n\nA.jaipur hi hoga baki aur to kya hi hoga\tB.Vactican City\n\nC.Madrid\tD.Berlin\n\n");
+  countq++;
+  if (toupper(getch())=='A')
+   {printf("\n\nCorrect!!!");countr++; break;}
+  else
+         {printf("\n\nWrong!!! The correct answer is A.jaipur hi hoga baki aur to kya hi hoga");break;}
+
+  case 21:
+  printf("\n\n\ncomplete the shayari . share market ko jarurwat hr bhari nivesh ki adn young indiand YI ko jarurat he sirf ____ ki");
+  printf("\n\nA.obama\tB.osama\n\nC.bhavesh\tD.honey singh\n\n");
+  countq++;
+  if (toupper(getch())=='C')
+   {printf("\n\nCorrect!!!");countr++; break;}
+  else
+         {printf("\n\nWrong!!! The correct answer is C.bhavesh");break;}
+
+  case 22:
+  printf("\n\n\ncomplete the shayari    . ghar he ye jaanu ,uska naam he _____");
+  printf("\n\nA.thanu\tB.kaanu\n\nC.laalu\tD.bhanu\n\n");
+  countq++;
+  if (toupper(getch())=='D')
+   {printf("\n\nCorrect!!!");countr++; break;}
+  else
+         {printf("\n\nWrong!!! The correct answer is D.bhanu");break;}
+
+  case 23:
+  printf("\n\n\nName the place where poonamites are not  found?");
+  printf("\n\nA.Germany\t B.Spain\n\n C.Japan\t D.class\n\n");
+  countq++;
+  if (toupper(getch())=='D')
+   {printf("\n\nCorrect!!!");countr++; break;}
+  else
+         {printf("\n\nWrong!!! The correct answer is D.class");break;}
+
+
+
+  }
+ i++;
+ if (i<=5) goto start;
+ finaltime=time(NULL);
+ score=(float)countr/countq*100-difftime(finaltime,initialtime)/3;
+ if (score<0) score=0;
+ printf("\n\n\nYour Score: %.2f",score);
+ if (score==100) printf("\n\nEXCELLENT!!! KEEP IT UP AAPKO PRADHAN MANTRI SE 31 feb KO AWARD MILEGA");
+ else if (score>=80 && score<100) printf("\n\n      vishvasniya!!   ");
+ else if (score>=60 &&score<80) printf("\n\n        bohot badhiya paruntu poornima ko aur jaane ki jarurat he aapko.");
+ else if (score>=40 && score<60) printf("\n\n       poornima ko aur jaano apko poornima ki aur knowledge honi chiye");
+ else printf("\n\         naap poornima ke bacche ho hi nhi sakte ,itna kam knowledge poornima ki");
+ puts("\n\nNEXT PLAY?(Y/N)");
+ if (toupper(getch())=='Y')
+  goto home;
+ else
+  {
+  writescore(score,playername);
+  goto mainhome;
+  }
+ }
+     else
+ {
+ printf("\n\n\t\t  Enter the right key\n\n\t\t  ");
+ Sleep(800);
+ goto mainhome;
+ }
+ return 0;
+}
